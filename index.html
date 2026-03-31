@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ghost of My Deadlines</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app" id="app">
+      <header>
+        <h1>Ghost of My Deadlines</h1>
+        <p class="subtitle">Track assignments before the ghost evolves.</p>
+      </header>
+
+      <section class="layout">
+        <section class="panel">
+          <h2>Add Assignment</h2>
+          <form id="assignment-form" class="assignment-form">
+            <label>
+              Task Name
+              <input type="text" id="task-name" required placeholder="Bio Exam" />
+            </label>
+
+            <label>
+              Due Date
+              <input type="date" id="due-date" required />
+            </label>
+
+            <label>
+              Priority
+              <select id="priority" required>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </label>
+
+            <button type="submit">Summon Assignment</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <h2>Assignments</h2>
+          <ul id="assignment-list" class="assignment-list"></ul>
+          <p id="empty-state" class="empty-state">No assignments yet. Add one above.</p>
+        </section>
+      </section>
+
+      <aside class="ghost-wrapper" aria-live="polite">
+        <div id="ghost" class="ghost tier1" role="img" aria-label="Friendly Wisp"></div>
+        <h3 id="ghost-title">The Friendly Wisp</h3>
+        <p id="ghost-status">No immediate threats detected.</p>
+      </aside>
+    </main>
+
+    <template id="assignment-item-template">
+      <li class="assignment-item">
+        <div class="assignment-meta">
+          <strong class="task-name"></strong>
+          <span class="task-due"></span>
+          <span class="task-priority"></span>
+        </div>
+        <div class="assignment-actions">
+          <button type="button" class="exorcise-btn">Exorcise</button>
+        </div>
+      </li>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
