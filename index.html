@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ghost of My Deadlines</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@400;600;700&family=Special+Elite&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="fog-overlay" aria-hidden="true"></canvas>
+
+    <main class="app" id="app">
+      <header class="doom-header">
+        <div class="doom-clock-wrap">
+          <span class="label">Doom Clock</span>
+          <p id="doom-clock" class="doom-clock">--d --h --m</p>
+        </div>
+
+        <div class="curse-meter-wrap" aria-live="polite">
+          <span class="label">Curse Meter</span>
+          <div class="curse-meter-track">
+            <div id="curse-meter-fill" class="curse-meter-fill"></div>
+          </div>
+          <small id="curse-meter-text">0 high-priority tasks</small>
+        </div>
+
+        <button id="mute-toggle" class="mute-toggle" type="button" aria-pressed="false" aria-label="Mute ambient audio">
+          ☠
+        </button>
+      </header>
+
+      <header class="title-block">
+        <h1>Ghost of My Deadlines</h1>
+        <p class="subtitle">Track assignments before the ghost evolves.</p>
+      </header>
+
+      <section class="layout">
+        <section class="panel">
+          <h2>Add Assignment</h2>
+          <form id="assignment-form" class="assignment-form">
+            <label>
+              Task Name
+              <input type="text" id="task-name" required placeholder="Bio Exam" />
+            </label>
+
+            <label>
+              Due Date
+              <input type="date" id="due-date" required />
+            </label>
+
+            <label>
+              Priority
+              <select id="priority" required>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </label>
+
+            <button id="summon-btn" type="submit">Summon Assignment</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <h2>Assignments</h2>
+          <ul id="assignment-list" class="assignment-list"></ul>
+          <p id="empty-state" class="empty-state">No assignments yet. Add one above.</p>
+        </section>
+      </section>
+
+      <aside class="ghost-wrapper" aria-live="polite">
+        <div id="ghost" class="ghost tier1" role="img" aria-label="Friendly Wisp"></div>
+        <h3 id="ghost-title">The Friendly Wisp</h3>
+        <p id="ghost-status">No immediate threats detected.</p>
+      </aside>
+
+      <section class="graveyard panel" id="graveyard-panel">
+        <h2>Graveyard</h2>
+        <p class="graveyard-subtitle">Exorcised tasks rest here.</p>
+        <div id="graveyard-list" class="graveyard-list"></div>
+      </section>
+    </main>
+
+    <aside id="ghost-chat" class="ghost-chat" aria-live="polite"></aside>
+
+    <div id="audio-controller" class="audio-controller" aria-hidden="true"></div>
+
+    <template id="assignment-item-template">
+      <li class="assignment-item">
+        <div class="assignment-meta">
+          <strong class="task-name"></strong>
+          <span class="task-due"></span>
+          <span class="task-priority"></span>
+        </div>
+        <div class="assignment-actions">
+          <button type="button" class="exorcise-btn">Exorcise</button>
+        </div>
+      </li>
+    </template>
+
+    <template id="grave-item-template">
+      <button class="tombstone" type="button">
+        <span class="tombstone-icon">🪦</span>
+        <span class="epitaph"></span>
+      </button>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
