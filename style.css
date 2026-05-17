@@ -24,10 +24,11 @@ body {
 
 #fog-overlay {
   position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -41,7 +42,7 @@ body.tier4-chaos {
 
 .app {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 1100px;
   margin: 0 auto;
   padding: 1rem 1rem 3rem;
@@ -102,9 +103,13 @@ body.tier4-chaos {
 
 .mute-toggle {
   justify-self: end;
-  width: 48px;
+  min-width: 120px;
   height: 48px;
-  border-radius: 50%;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
   border: 1px solid rgba(255, 255, 255, 0.15);
   background: radial-gradient(circle at 30% 20%, #333, #101010);
   color: #f0f0f0;
@@ -280,6 +285,7 @@ button:hover {
 }
 
 .ghost-chat {
+  text-shadow: 0 1px 0 rgba(255,255,255,0.15), 0 0 8px rgba(255,255,255,0.15);
   position: fixed;
   left: 1rem;
   bottom: 1rem;
@@ -320,18 +326,30 @@ button:hover {
 
 .tombstone {
   position: relative;
-  width: 52px;
-  height: 58px;
-  border-radius: 42% 42% 16% 16%;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: linear-gradient(180deg, #646b7e, #3e455a);
-  display: grid;
-  place-items: center;
-  padding: 0;
+  width: 108px;
+  min-height: 90px;
+  border-radius: 50% 50% 16% 16%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: linear-gradient(180deg, #707a8e, #3f475d 66%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 8px 14px rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.45rem;
+  transform: translateY(0);
+  transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
-.tombstone .tombstone-icon {
-  font-size: 1.15rem;
+.tombstone:hover {
+  transform: translateY(-4px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 12px 18px rgba(0,0,0,0.4);
+}
+
+.grave-icon {
+  font-size: 1.4rem;
+  color: #f0f0ff;
 }
 
 .epitaph {
@@ -436,6 +454,7 @@ button:hover {
   }
 
   .ghost-chat {
+  text-shadow: 0 1px 0 rgba(255,255,255,0.15), 0 0 8px rgba(255,255,255,0.15);
     bottom: 5.5rem;
     left: 0.75rem;
   }
